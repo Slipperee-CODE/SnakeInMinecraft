@@ -1,16 +1,24 @@
 package me.slime.snakeinminecraft.commands;
 
+import me.slime.snakeinminecraft.SnakeInMinecraft;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class StartSnakeCommand implements CommandExecutor {
+
+    SnakeInMinecraft snakeInMinecraft = new SnakeInMinecraft();
+    HashMap<String, List<Block>> snakes = snakeInMinecraft.snakes;
+    HashMap<String, String> snakeDirection = snakeInMinecraft.snakeDirection;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -44,6 +52,11 @@ public class StartSnakeCommand implements CommandExecutor {
         BuildPlatforms(playerLocation, sizeX, sizeZ, playerHeight);
 
         player.teleport(newPlayerLocation);
+
+        //Initialize the player's snake + direction
+        InitPlayerData(player);
+        //Start Movement of Snake | Schedule a bukkit repeating thing
+        //Start Detecting Direction to Move | Schedule a bukkit repeating thing + make a listener for right clicking items
     }
 
     public void BuildPlatforms(Location playerLocation, int sizeX, int sizeZ, int playerHeight)
@@ -104,5 +117,12 @@ public class StartSnakeCommand implements CommandExecutor {
 
         Location location = new Location(playerLocation.getWorld(), x+(sizeX/2), y+playerHeight-1,z+(sizeZ/2));
         location.getBlock().setType(platformMaterial);
+    }
+
+    public void InitPlayerData(Player player)
+    {
+        String username = player.getName();
+        snakes.put(username, new ArrayList<Block>() );
+        snakeDirection.put(username, "up");
     }
 }

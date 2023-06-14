@@ -8,4 +8,7 @@ website: https://www.youtube.com/channel/UCjNX2jBBz3s4SIcKTsK8MZA
 commands:
   StartSnake:
     description: Starts a game of Snake for the player
+    usage: /<command> <sizeX> <sizeZ> <playerHeight>
+  EndSnake:
+    description: Ends a game of Snake for the player
     usage: /<command>
