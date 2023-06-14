@@ -1,0 +1,7 @@
+name: SnakeInMinecraft
+version: '${project.version}'
+main: me.slime.snakeinminecraft.SnakeInMinecraft
+api-version: 1.19
+authors: [ slipperee_slime ]
+description: Snake...in Minecraft
+website: https://www.youtube.com/channel/UCjNX2jBBz3s4SIcKTsK8MZA
